@@ -24,7 +24,7 @@ if [[ ! -x /usr/local/bin/caddy ]]; then
     base="https://github.com/caddyserver/caddy/releases/download/v${version}"
     curl -fsSL "$base/$archive" -o "$temp_dir/$archive"
     curl -fsSL "$base/caddy_${version}_checksums.txt" -o "$temp_dir/checksums.txt"
-    (cd "$temp_dir"; awk -v archive="$archive" '{ sub(/^[*]/, "", $2) } $2 == archive { print $1 "  " archive }' checksums.txt | sha256sum --check --strict)
+    (cd "$temp_dir"; awk -v archive="$archive" '{ sub(/^[*]/, "", $2) } $2 == archive { print $1 "  " archive }' checksums.txt | sha512sum --check --strict)
     tar -xzf "$temp_dir/$archive" -C "$temp_dir" caddy
     install -m 755 "$temp_dir/caddy" /usr/local/bin/caddy
 fi
