@@ -70,6 +70,7 @@ test('chat local explica procedencia y decisión y rechaza solicitudes inválida
 test('DeepSeek recibe el prompt con datos del servidor y degrada ante un fallo', async () => {
   const proveedor = api(datos, { fetcher: async (url, req) => {
     assert.equal(url, 'https://api.deepseek.com/chat/completions');
+    assert.equal(req.redirect, 'manual');
     assert.equal(req.headers.Authorization, 'Bearer clave-ficticia-de-prueba');
     const { model, messages } = JSON.parse(req.body);
     assert.equal(model, 'deepseek-flash');

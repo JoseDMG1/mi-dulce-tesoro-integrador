@@ -33,7 +33,7 @@ export function api(datos, { fetcher = fetch, sala } = {}) {
     try {
       const url = new URL('/datos', env.ESP32_URL);
       if (!['http:', 'https:'].includes(url.protocol) || url.username || url.password) throw new Error();
-      const respuesta = await fetcher(url, { signal: AbortSignal.timeout(3000), redirect: 'error' });
+      const respuesta = await fetcher(url, { signal: AbortSignal.timeout(3000), redirect: 'manual' });
       if (!respuesta.ok) throw new Error();
       const { temperatura, humedad, movimiento } = await respuesta.json();
       if (!(temperatura === null || Number.isFinite(temperatura)) ||
@@ -73,16 +73,20 @@ export function api(datos, { fetcher = fetch, sala } = {}) {
       const resultado = await fetcher('https://api.deepseek.com/chat/completions', {
         method: 'POST',
         headers: { Authorization: 'Bearer ' + env.DEEPSEEK_API_KEY.trim(), 'Content-Type': 'application/json' },
-        signal: AbortSignal.timeout(12000), redirect: 'error',
+        signal: AbortSignal.timeout(12000), redirect: 'manual',
         body: JSON.stringify({ model: env.DEEPSEEK_MODEL || 'deepseek-flash', messages: mensajes,
           thinking: { type: 'disabled' }, max_tokens: 300 })
       });
-      if (!resultado.ok) throw new Error();
+      if (!resultado.ok) {
+        return json({ respuesta, origen: 'Reglas del prototipo',
+          aviso: 'DeepSeek no está disponible en este momento (HTTP ' + resultado.status + ').' });
+      }
       const contenido = (await resultado.json()).choices?.[0]?.message?.content?.trim();
       if (!contenido) throw new Error();
       return json({ respuesta: contenido, origen: 'DeepSeek' });
-    } catch {
-      return json({ respuesta, origen: 'Reglas del prototipo', aviso: 'DeepSeek no está disponible en este momento.' });
+    } catch (error) {
+      const motivo = ['TimeoutError', 'AbortError'].includes(error.name) ? 'tiempo de espera agotado' : 'error de conexión o de respuesta';
+      return json({ respuesta, origen: 'Reglas del prototipo', aviso: 'DeepSeek no está disponible en este momento (' + motivo + ').' });
     }
   }
 
