@@ -111,6 +111,7 @@ el('generar').addEventListener('submit', async event => {
   event.preventDefault();
   const mes = el('mes').value;
   const caso = el('caso').value;
+  const turno = el('turno').value;
   const controles = [...event.target.elements];
   controles.forEach(item => { item.disabled = true; });
   el('detalle-cierre').hidden = true;
@@ -123,7 +124,12 @@ el('generar').addEventListener('submit', async event => {
       return;
     }
     const resumen = await api('/api/borrador?' + new URLSearchParams({ mes, caso }));
-    const r = await api('/api/chat', { pregunta: 'Redacta un análisis breve del cierre mensual de marzo.', tipo: 'borrador' });
+    const r = await api('/api/chat', {
+      pregunta: 'Resume las ventas, los gastos y el saldo del período ' + mes +
+        '. Añade la fuente y la decisión para la lectura ambiental seleccionada, como observación del turno.',
+      tipo: 'borrador',
+      turno
+    });
     borrador = { resumen, analisis: r.respuesta, origen: r.origen, aviso: r.aviso };
     muestraCierre(borrador, false);
     estado('estado-cierre', 'Borrador listo para revisión.');
