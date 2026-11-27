@@ -8,10 +8,6 @@
   },
   "scripts": {
     "start": "node --env-file-if-exists=.env src/server.js",
-    "test": "node --test",
-    "build:site": "node src/build-site.js"
-  },
-  "devDependencies": {
-    "esbuild": "^0.28.2"
+    "test": "node --test"
   }
 }

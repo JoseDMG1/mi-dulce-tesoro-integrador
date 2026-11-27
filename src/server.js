@@ -22,7 +22,8 @@ const handle = api(datos, { sala: room() });
 const server = createServer(async (req, res) => {
   try {
     const host = req.headers.host;
-    const origin = process.env.PUBLIC_ORIGIN || 'http://' + host;
+    const protocol = req.headers['x-forwarded-proto'] === 'https' && req.socket.remoteAddress === '127.0.0.1' ? 'https://' : 'http://';
+    const origin = process.env.PUBLIC_ORIGIN || protocol + host;
     const url = new URL(req.url, origin);
     if (url.pathname === '/ronda') {
       res.writeHead(308, { Location: '/ronda/' + url.search });

@@ -16,9 +16,8 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm test
-      - run: npm run build:site
       - name: Empaquetar la versión verificada
-        run: tar -C dist -czf mi-dulce-tesoro-web.tar.gz .
+        run: tar -czf mi-dulce-tesoro-web.tar.gz public src deploy package.json .env.example
       - uses: actions/upload-artifact@v7
         with:
           name: mi-dulce-tesoro-web

@@ -24,6 +24,9 @@ async function leerJson(request, permitirBeacon = false) {
 export function api(datos, { fetcher = fetch, sala } = {}) {
   const r = resumen(datos.ventas, datos.gastos, periodo);
 
+  let usageDay;
+  let dailyCalls = 0;
+
   async function lectura(turno, env) {
     if (turno !== 'sensor') {
       const muestra = muestras[turno];
@@ -62,6 +65,19 @@ export function api(datos, { fetcher = fetch, sala } = {}) {
     }
     if (esBorrador) respuesta += ' Revisa los registros antes de aprobar el cierre.';
     if (!env.DEEPSEEK_API_KEY?.trim()) return json({ respuesta, origen: 'Reglas del prototipo' });
+    const limit = Number(env.DEEPSEEK_DAILY_LIMIT);
+    if (Number.isSafeInteger(limit) && limit > 0) {
+      const today = new Date().toISOString().slice(0, 10);
+      if (usageDay !== today) {
+        usageDay = today;
+        dailyCalls = 0;
+      }
+      if (dailyCalls >= limit) {
+        return json({ respuesta, origen: 'Reglas del prototipo',
+          aviso: 'Se alcanzó el límite diario de consultas a DeepSeek.' });
+      }
+      dailyCalls++;
+    }
     const mensajes = [
       { role: 'system', content: prompt + '\nContexto del prototipo (ventas y gastos ficticios): ' + cierre + '\nRegla didáctica: inspeccionar con más de 28 °C o más de 65 % HR. ' + contexto },
       ...(Array.isArray(body.historial) ? body.historial.slice(-6).filter(m => m &&

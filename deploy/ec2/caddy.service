@@ -1,0 +1,22 @@
+[Unit]
+Description=Caddy HTTPS proxy
+After=network-online.target mi-dulce-tesoro.service
+Wants=network-online.target
+
+[Service]
+User=caddy
+Environment=HOME=/var/lib/caddy
+EnvironmentFile=/etc/caddy/site.env
+ExecStart=/usr/local/bin/caddy run --config /etc/caddy/Caddyfile --adapter caddyfile
+Restart=on-failure
+RestartSec=3
+AmbientCapabilities=CAP_NET_BIND_SERVICE
+CapabilityBoundingSet=CAP_NET_BIND_SERVICE
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/var/lib/caddy
+PrivateTmp=yes
+
+[Install]
+WantedBy=multi-user.target

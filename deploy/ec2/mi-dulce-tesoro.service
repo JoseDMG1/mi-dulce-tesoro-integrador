@@ -1,0 +1,22 @@
+[Unit]
+Description=Portal Mi Dulce Tesoro
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=mi-dulce-tesoro
+WorkingDirectory=/opt/mi-dulce-tesoro
+Environment=HOST=127.0.0.1
+Environment=PORT=4188
+Environment=DEEPSEEK_DAILY_LIMIT=300
+EnvironmentFile=/etc/mi-dulce-tesoro/.env
+ExecStart=/usr/bin/node-22 src/server.js
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+
+[Install]
+WantedBy=multi-user.target
