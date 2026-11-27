@@ -3,3 +3,4 @@
 .mission{border-top:3px solid #e6b677;background:linear-gradient(130deg,#163b31f5,#244a3eea)}#advance{width:100%;height:4px;appearance:none;border:0;display:block;margin:11px 0 8px;background:#648276}#advance::-webkit-progress-bar{background:#648276}#advance::-webkit-progress-value{background:#ffcc82}#advance::-moz-progress-bar{background:#ffcc82}#bearing{color:#ffda98;font-size:14px;font-weight:650}.first{border-left:3px solid #efc88b;padding-left:11px;color:#dceacd;font-size:14px;margin:14px 0}kbd{font:600 13px system-ui;border:1px solid #ffffff65;border-radius:4px;padding:0 4px}
 
 .portal-link{color:#f2d6aa;text-decoration:underline}
+.portal-link:hover{color:#fff3df} #join button:disabled{opacity:.58;cursor:wait}

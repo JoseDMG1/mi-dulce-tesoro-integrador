@@ -41,6 +41,7 @@ el('join').onsubmit=async e=>{
     active=true;el('overlay').hidden=true;el('hud').hidden=false;world.start({estacion:stationPanel,equipo:teamPanel,pantallaCompleta:toggleFull});hud();sync();
   }catch(err){el('error').textContent=err.message;submit.disabled=false;}
 };
+el('join').querySelector('button').disabled=false;
 function closePanel(){el('overlay').hidden=true;options=[];world.pause(false);}
 function panel(tag,title,body,items){
   world.pause(true);el('overlay').hidden=false;const card=el('card');card.replaceChildren();
