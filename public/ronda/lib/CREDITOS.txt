@@ -1,0 +1,11 @@
+Three.js r160 · Licencia MIT incluida en LICENSE-three.txt.
+
+Fotografías de materiales y entorno de Poly Haven (CC0), reducidas y empaquetadas
+en materiales.js para permitir la ejecución directa desde archivo local.
+https://polyhaven.com/a/wood_table_001
+https://polyhaven.com/a/terracotta_floor_tiles
+https://polyhaven.com/a/plastered_wall_04
+https://polyhaven.com/a/green_point_park
+https://polyhaven.com/license
+
+El paisaje de la ventana y los materiales son referencias visuales. La cafetería es un modelo conceptual.

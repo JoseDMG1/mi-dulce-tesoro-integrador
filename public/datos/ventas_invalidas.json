@@ -1,0 +1,57 @@
+[
+  {
+    "id": "D001",
+    "ticket": "T001",
+    "fecha": "2026-03-05",
+    "producto": "Café latte",
+    "categoria": "Bebidas",
+    "cantidad": 4,
+    "precio_centimos": 800,
+    "total_centimos": 3300,
+    "pago": "efectivo"
+  },
+  {
+    "id": "D002",
+    "ticket": "T001",
+    "fecha": "2026-03-05",
+    "producto": "Torta de chocolate",
+    "categoria": "Postres",
+    "cantidad": 2,
+    "precio_centimos": 1200,
+    "total_centimos": 2400,
+    "pago": "efectivo"
+  },
+  {
+    "id": "D003",
+    "ticket": "T002",
+    "fecha": "2026-03-12",
+    "producto": "Brownie",
+    "categoria": "Postres",
+    "cantidad": 5,
+    "precio_centimos": 600,
+    "total_centimos": 3000,
+    "pago": "transferencia"
+  },
+  {
+    "id": "D004",
+    "ticket": "T003",
+    "fecha": "2026-03-20",
+    "producto": "Té",
+    "categoria": "Bebidas",
+    "cantidad": 3,
+    "precio_centimos": 500,
+    "total_centimos": 1500,
+    "pago": "efectivo"
+  },
+  {
+    "id": "D005",
+    "ticket": "T004",
+    "fecha": "2026-03-28",
+    "producto": "Torta de chocolate",
+    "categoria": "Postres",
+    "cantidad": 1,
+    "precio_centimos": 1200,
+    "total_centimos": 1200,
+    "pago": "transferencia"
+  }
+]

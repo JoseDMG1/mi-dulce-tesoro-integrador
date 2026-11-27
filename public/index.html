@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mi Dulce Tesoro | Operaciones</title>
+<meta name="description" content="Tablero de gestión, cierre mensual y capacitación de Mi Dulce Tesoro.">
+<link rel="icon" href="data:,"><link rel="stylesheet" href="/portal.css">
+<script type="module" src="/portal.js"></script>
+</head>
+<body>
+<header class="bar">
+  <a class="marca" href="#inicio"><span class="sello" aria-hidden="true">MT</span><span>Mi Dulce Tesoro<small>Operaciones de cafetería</small></span></a>
+  <nav aria-label="Secciones"><a href="#tablero">Tablero</a><a href="#cierre">Cierre mensual</a><a href="#ronda">Capacitación</a></nav>
+  <a class="boton borde" href="#asistente">Dulce IA</a>
+</header>
+<main id="inicio" class="contenedor">
+  <section class="portada">
+    <div class="presentacion"><p class="ceja">TUMBES · DEMOSTRACIÓN ACADÉMICA</p>
+      <h1>Gestión diaria<br>de la cafetería</h1>
+      <p>Consulta las cifras del mes, revisa las condiciones del almacén y prepara el cierre administrativo desde un solo lugar.</p>
+      <a class="boton principal" href="#cierre">Preparar cierre</a>
+    </div>
+    <figure><img src="/escena.webp" alt="Comedor del entorno 3D de Mi Dulce Tesoro" width="980" height="550"><figcaption>Entorno de capacitación de Mi Dulce Tesoro</figcaption></figure>
+  </section>
+
+  <section id="tablero" aria-labelledby="t-tablero">
+    <div class="encabezado"><div><p class="ceja">PANEL ADMINISTRATIVO</p><h2 id="t-tablero">Actividad de marzo de 2026</h2></div><span class="etiqueta">Datos ficticios del TA4</span></div>
+    <div class="metricas">
+      <article><span>Ventas</span><strong id="ventas">—</strong><small id="tickets">Tickets del mes</small></article>
+      <article><span>Gastos</span><strong id="gastos">—</strong><small>Egresos registrados</small></article>
+      <article><span>Saldo</span><strong id="saldo">—</strong><small>Ventas menos gastos</small></article>
+    </div>
+  </section>
+
+  <div class="columnas">
+    <section id="almacen" class="tarjeta" aria-labelledby="t-almacen">
+      <div class="encabezado"><div><p class="ceja">MONITOREO AMBIENTAL</p><h2 id="t-almacen">Almacén</h2></div><span id="fuente" class="etiqueta">Cargando</span></div>
+      <label for="turno">Fuente de lectura</label>
+      <div class="en-linea"><select id="turno"><option value="apertura">Apertura · 08:00</option><option value="tarde">Tarde · 15:00</option><option value="sensor" hidden>ESP32 en vivo</option></select><button id="actualizar" class="borde" type="button">Actualizar</button></div>
+      <dl class="ambiente"><div><dt>Temperatura</dt><dd id="temperatura">—</dd></div><div><dt>Humedad relativa</dt><dd id="humedad">—</dd></div></dl>
+      <p id="decision" class="estado" aria-live="polite">Consultando lectura…</p>
+      <p id="lectura-detalle" class="ayuda">Regla de práctica: inspeccionar si se supera 28 °C o 65 % HR.</p>
+    </section>
+    <section id="asistente" class="tarjeta" aria-labelledby="t-ia">
+      <div class="encabezado"><div><p class="ceja">ASISTENTE ADMINISTRATIVO</p><h2 id="t-ia">Dulce IA</h2></div><span id="modo-ia" class="etiqueta">Cargando</span></div>
+      <div id="mensajes" class="mensajes" role="log" aria-label="Conversación"><p class="mensaje asistencia">Puedo ayudarte a consultar las cifras de marzo y la lectura del almacén.</p></div>
+      <div class="en-linea sugerencias"><button class="borde" type="button" data-pregunta="Resume las ventas y gastos de marzo.">Resumen de marzo</button><button class="borde" type="button" data-pregunta="¿La lectura del almacén requiere inspección y cuál es su origen?">Estado del almacén</button></div>
+      <form id="chat" class="en-linea"><input id="pregunta" maxlength="800" required aria-label="Tu pregunta" placeholder="Escribe tu pregunta"><button class="principal" type="submit">Enviar</button></form>
+    </section>
+  </div>
+
+  <section id="cierre" class="tarjeta" aria-labelledby="t-cierre">
+    <div class="encabezado"><div><p class="ceja">AUTOMATIZACIÓN ADMINISTRATIVA</p><h2 id="t-cierre">Cierre mensual</h2></div><span class="etiqueta">Revisión humana</span></div>
+    <form id="generar" class="controles">
+      <label>Período<input type="month" id="mes" value="2026-03" required></label>
+      <label>Escenario de prueba<select id="caso"><option value="normal">Registros válidos</option><option value="vacio">Sin ventas</option><option value="invalido">Datos inválidos</option></select></label>
+      <button type="submit" class="principal">Generar borrador</button>
+    </form>
+    <p id="estado-cierre" class="estado" aria-live="polite">El CSV estará disponible después de la aprobación.</p>
+    <article id="detalle-cierre" class="detalle" hidden>
+      <h3 id="titulo-borrador">Borrador</h3>
+      <p id="datos-borrador" class="cifras"></p>
+      <p id="texto-borrador"></p><small id="origen-borrador"></small>
+      <form id="revisar" class="revision">
+        <label for="observacion">Observación de revisión</label><textarea id="observacion" maxlength="300" rows="2" required placeholder="Describe la revisión del período"></textarea>
+        <div class="en-linea"><button id="aprobar" class="principal" type="submit">Aprobar cierre</button><button id="rechazar" class="borde" type="button">Rechazar</button></div>
+      </form>
+      <button id="descargar" class="principal" type="button" hidden>Descargar CSV</button>
+    </article>
+  </section>
+
+  <section id="ronda" class="tarjeta" aria-labelledby="t-ronda">
+    <div class="encabezado"><div><p class="ceja">CAPACITACIÓN OPERATIVA</p><h2 id="t-ronda">Ronda de almacén</h2></div><span class="etiqueta">Muestras didácticas</span></div>
+    <p>Ensaya la entrega de turno en cinco estaciones y registra la decisión ambiental en la bitácora.</p>
+    <div class="en-linea botones-ronda"><a class="boton principal" href="/ronda/">Abrir maqueta 3D</a><button id="iniciar-guia" class="borde" type="button">Recorrido guiado</button><a id="sala" class="boton borde" href="/ronda/?sala=1" hidden>Abrir sala compartida</a></div>
+    <article id="guia" class="detalle" hidden><h3 id="paso"></h3><p id="instruccion" aria-live="polite"></p><div id="opciones" class="en-linea botones-ronda"></div></article>
+    <h3>Bitácora de práctica</h3><p class="ayuda">Los cierres y las rondas se conservan en este navegador.</p>
+    <ul id="bitacora" class="bitacora"><li>Aún no hay rondas firmadas.</li></ul>
+  </section>
+</main>
+<footer class="pie">Mi Dulce Tesoro <span>Proyecto integrador TIC · Semana 18</span></footer>
+</body>
+</html>

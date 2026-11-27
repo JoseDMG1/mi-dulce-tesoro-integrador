@@ -1,0 +1,14 @@
+[
+  {
+    "id": "G001",
+    "fecha": "2026-03-08",
+    "descripcion": "Limpieza",
+    "monto_centimos": 2000
+  },
+  {
+    "id": "G002",
+    "fecha": "2026-03-22",
+    "descripcion": "Movilidad",
+    "monto_centimos": 1500
+  }
+]
